@@ -3,6 +3,7 @@ using Million.BackEnd.Domain.Common.Dtos;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Collections.Immutable;
+using System.Linq.Expressions;
 
 namespace Million.BackEnd.Infrastructure.Common.Persistence
 {
@@ -19,9 +20,9 @@ namespace Million.BackEnd.Infrastructure.Common.Persistence
 
         public async Task<IEnumerable<T>> Where(
             System.Linq.Expressions.Expression<Func<T, bool>> predicate,
-            string includes = "",
             PaginationFilter? pagination = null,
-            OrderByClausure<T>? orderBy = null)
+            OrderByClausure<T>? orderBy = null,
+            RangeFilter? range = null)
         {
             IQueryable<T>? query = _dbSet.AsQueryable<T>().Where(predicate);
 
@@ -45,6 +46,11 @@ namespace Million.BackEnd.Infrastructure.Common.Persistence
                     .Take(pagination.Limit);
             }
 
+            if (range is null)
+            {
+
+            }
+
             return (await query.ToListAsync()).ToImmutableList();
         }
 
@@ -60,6 +66,11 @@ namespace Million.BackEnd.Infrastructure.Common.Persistence
         public async Task<int> Count()
         {
             return await _dbSet.AsQueryable<T>().CountAsync();
+        }
+
+        public Task<int> Count(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.AsQueryable<T>().CountAsync(predicate);
         }
     }
 }

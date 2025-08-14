@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using Million.BackEnd.Application;
+using Million.BackEnd.Contracts;
 using Million.BackEnd.Infrastructure;
 
 namespace Million.BackEnd.Api
@@ -11,9 +12,8 @@ namespace Million.BackEnd.Api
             services
                 .AddPolicyCors()
                 .AddSwagger()
-                //.AddMappings()
+                .AddMappings()
                 .AddMiscellaneous()
-                //.AddCommonDependencies()
                 .AddInfrastructureDependencies(configuration)
                 .AddApplicationDependencies(configuration);
 

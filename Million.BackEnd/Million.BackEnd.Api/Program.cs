@@ -1,3 +1,4 @@
+using Million.BackEnd.Api;
 using Million.BackEnd.Application;
 using Million.BackEnd.Infrastructure;
 
@@ -9,9 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services
-    .AddInfrastructureDependencies(builder.Configuration)
-    .AddApplicationDependencies(builder.Configuration);
+builder.Services.AddApiDependencies(builder.Configuration);
 
 var app = builder.Build();
 
@@ -19,6 +18,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
