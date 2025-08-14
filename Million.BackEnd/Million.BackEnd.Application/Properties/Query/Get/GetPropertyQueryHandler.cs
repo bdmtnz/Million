@@ -9,11 +9,11 @@ using MongoDB.Driver;
 
 namespace Million.BackEnd.Application.Properties.Query.Get
 {
-    public class GetPropertyQueryHandler(IMapper _mapper, IUnitOfWork _unit) : IRequestHandler<GetPropertyQuery, ErrorOr<PaginationResponse<List<PropertyResponse>>>>
+    public class GetPropertyQueryHandler(IMapper _mapper, IUnitOfWork _unit) : IRequestHandler<GetPropertyQuery, ErrorOr<PaginationResponse<List<PropertyFilteredResponse>>>>
     {
         private readonly IGenericRepository<Property> _property = _unit.GenericRepository<Property>();
 
-        public async Task<ErrorOr<PaginationResponse<List<PropertyResponse>>>> Handle(GetPropertyQuery request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<PaginationResponse<List<PropertyFilteredResponse>>>> Handle(GetPropertyQuery request, CancellationToken cancellationToken)
         {
             var keyword = request.Keyword is null ? string.Empty : request.Keyword.ToLower().Replace(" ", "");
 
@@ -40,11 +40,11 @@ namespace Million.BackEnd.Application.Properties.Query.Get
 
             SortDefinition<Property> orderBy = Builders<Property>.Sort.Descending(p => p.CreatedOnUtc);
             var properties = await _property.Where(predicate, request.Pagination, orderBy);
-            List<PropertyResponse> data = properties.ToList().ConvertAll(_mapper.Map<PropertyResponse>);
+            List<PropertyFilteredResponse> data = properties.ToList().ConvertAll(_mapper.Map<PropertyFilteredResponse>);
 
             var total = await _property.Count(predicate);
 
-            return new PaginationResponse<List<PropertyResponse>>(total, data);
+            return new PaginationResponse<List<PropertyFilteredResponse>>(total, data);
         }
     }
 }

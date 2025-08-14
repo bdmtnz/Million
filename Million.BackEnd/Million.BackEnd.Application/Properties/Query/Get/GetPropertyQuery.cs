@@ -6,5 +6,5 @@ using Million.BackEnd.Domain.Common.Dtos;
 
 namespace Million.BackEnd.Application.Properties.Query.Get
 {
-    public record GetPropertyQuery(string? Keyword, RangeFilter Range, PaginationFilter Pagination) : IRequest<ErrorOr<PaginationResponse<List<PropertyResponse>>>>;
+    public record GetPropertyQuery(string? Keyword, RangeFilter Range, PaginationFilter Pagination) : IRequest<ErrorOr<PaginationResponse<List<PropertyFilteredResponse>>>>;
 }

@@ -20,4 +20,12 @@
         PropertyOwnerResponse Owner,
         PropertyTraceResponse? Trace,
         DateTime CratedOnUtc);
+    public record PropertyFilteredResponse(
+        string Id,
+        string Name,
+        string Address,
+        decimal Price,
+        string Code,
+        int Year,
+        DateTime CratedOnUtc);
 }

@@ -9,6 +9,14 @@ namespace Million.BackEnd.Contracts.Properties
     {
         public void Register(TypeAdapterConfig config)
         {
+            config.NewConfig<Property, PropertyFilteredResponse>()
+                .Map(dest => dest.Id, src => src.Id.Value)
+                .Map(dest => dest.Address, src => src.Address)
+                .Map(dest => dest.Code, src => src.Code)
+                .Map(dest => dest.CratedOnUtc, src => src.CreatedOnUtc)
+                .Map(dest => dest.Name, src => src.Name)
+                .Map(dest => dest.Price, src => src.Price);
+
             config.NewConfig<Property, PropertyResponse>()
                 .Map(dest => dest.Id, src => src.Id.Value)
                 .Map(dest => dest.Address, src => src.Address)

@@ -9,7 +9,7 @@ namespace Million.BackEnd.Api.Controllers
     [ApiController]
     public class SeederController(IMediator _mediator) : ApiController
     {
-        [HttpGet(Name = "Create")]
+        [HttpPatch(Name = "Create")]
         public async Task<IActionResult> Create()
         {
             var response = await _mediator.Send(new CreateSeederCommand());
