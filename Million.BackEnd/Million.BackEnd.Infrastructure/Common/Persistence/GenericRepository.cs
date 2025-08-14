@@ -21,8 +21,7 @@ namespace Million.BackEnd.Infrastructure.Common.Persistence
         public async Task<IEnumerable<T>> Where(
             System.Linq.Expressions.Expression<Func<T, bool>> predicate,
             PaginationFilter? pagination = null,
-            OrderByClausure<T>? orderBy = null,
-            RangeFilter? range = null)
+            OrderByClausure<T>? orderBy = null)
         {
             IQueryable<T>? query = _dbSet.AsQueryable<T>().Where(predicate);
 
@@ -46,12 +45,31 @@ namespace Million.BackEnd.Infrastructure.Common.Persistence
                     .Take(pagination.Limit);
             }
 
-            if (range is null)
-            {
+            return (await query.ToListAsync()).ToImmutableList();
+        }
 
+        public async Task<IEnumerable<T>> Where(
+            FilterDefinition<T>? filter = null,
+            PaginationFilter? pagination = null,
+            SortDefinition<T>? orderBy = null)
+        {
+            var query = _dbSet.Find(filter ?? Builders<T>.Filter.Empty);
+
+            if (orderBy is not null)
+            {
+                query.Sort(orderBy);
             }
 
-            return (await query.ToListAsync()).ToImmutableList();
+            if (pagination is not null)
+            {
+                var previousOffset = pagination.Offset - 1;
+                query
+                    .Sort(orderBy)
+                    .Skip(previousOffset * pagination.Limit)
+                    .Limit(pagination.Limit);
+            }
+
+            return await query.ToListAsync();
         }
 
         public Task Add(T entity)
@@ -71,6 +89,11 @@ namespace Million.BackEnd.Infrastructure.Common.Persistence
         public Task<int> Count(Expression<Func<T, bool>> predicate)
         {
             return _dbSet.AsQueryable<T>().CountAsync(predicate);
+        }
+
+        public Task<long> Count(FilterDefinition<T> filter)
+        {
+            return _dbSet.CountDocumentsAsync(filter);
         }
     }
 }

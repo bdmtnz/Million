@@ -4,9 +4,8 @@ using MediatR;
 using Million.BackEnd.Contracts.Common;
 using Million.BackEnd.Contracts.Properties;
 using Million.BackEnd.Domain.Common.Contracts.Persistence;
-using Million.BackEnd.Domain.Common.Dtos;
 using Million.BackEnd.Domain.PropertyAggregate;
-using System.Linq.Expressions;
+using MongoDB.Driver;
 
 namespace Million.BackEnd.Application.Properties.Query.Get
 {
@@ -17,16 +16,29 @@ namespace Million.BackEnd.Application.Properties.Query.Get
         public async Task<ErrorOr<PaginationResponse<List<PropertyResponse>>>> Handle(GetPropertyQuery request, CancellationToken cancellationToken)
         {
             var keyword = request.Keyword is null ? string.Empty : request.Keyword.ToLower().Replace(" ", "");
-            Expression<Func<Property, bool>> predicate =
-                (m) =>
-                    (string.IsNullOrEmpty(keyword) ? true : (
-                        m.Name.ToLower().Contains(keyword) ||
-                        m.Address.Contains(keyword) ||
-                        m.Year.ToString().Contains(keyword)
-                    )
-                );
 
-            var orderBy = new OrderByClausure<Property>(m => m.CreatedOnUtc, OrderByDirection.Desc);
+            FilterDefinition<Property> filter = (
+                string.IsNullOrEmpty(keyword) ? 
+                    Builders<Property>.Filter.Empty :
+                    Builders<Property>.Filter.Or(
+                        Builders<Property>.Filter.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(keyword, "i")),
+                        Builders<Property>.Filter.Regex(p => p.Address, new MongoDB.Bson.BsonRegularExpression(keyword, "i")),
+                        Builders<Property>.Filter.Regex(p => p.Year, new MongoDB.Bson.BsonRegularExpression(keyword, "i"))
+                    )
+            );
+
+            FilterDefinition<Property> range = (
+                Builders<Property>.Filter.And(
+                    Builders<Property>.Filter.Gte(p => p.Price, request.Range.From ?? 0),
+                    request.Range.To is null ? 
+                        Builders<Property>.Filter.Empty : 
+                        Builders<Property>.Filter.Lte(p => p.Price, request.Range.To)
+                )
+            );
+
+            var predicate = Builders<Property>.Filter.And(filter, range);
+
+            SortDefinition<Property> orderBy = Builders<Property>.Sort.Descending(p => p.CreatedOnUtc);
             var properties = await _property.Where(predicate, request.Pagination, orderBy);
             List<PropertyResponse> data = properties.ToList().ConvertAll(_mapper.Map<PropertyResponse>);
 
