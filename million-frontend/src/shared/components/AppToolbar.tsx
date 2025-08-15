@@ -1,25 +1,19 @@
 import React from 'react';
 import { Toolbar } from 'primereact/toolbar';
-import { SplitButton } from 'primereact/splitbutton';
 import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
+import { Avatar } from 'primereact/avatar';
+import { Badge } from 'primereact/badge';
 
 const AppToolbar = () => {
-    const items = [
-        {
-            label: 'Update',
-            icon: 'pi pi-refresh'
-        },
-        {
-            label: 'Delete',
-            icon: 'pi pi-times'
-        }
-    ];
-
     const startContent = (
         <React.Fragment>
-            <p>Million Test</p>
+            <img 
+                className='w-34'
+                src="https://cdn.millionluxury.com/image-resizing?image=https://maustorageprod.blob.core.windows.net/spinfileuat/Spin/Data/Estate/IMG/ceb693ad6b7643fc8c1be271d6a9c068.svg?v=740" 
+                alt="million-logo" 
+            />
         </React.Fragment>
     );
 
@@ -31,14 +25,23 @@ const AppToolbar = () => {
     );
 
     const endContent = (
-        <React.Fragment>
-            <SplitButton label="Save" model={items} icon="pi pi-check"></SplitButton>
-        </React.Fragment>
+        <a href="https://www.linkedin.com/in/bdmtnz/" target="_blank" rel="noopener noreferrer">
+            <div className='flex gap-4 items-center'>
+                Brayan Martinez
+                <Avatar 
+                    className="p-overlay-badge" 
+                    image="https://media.licdn.com/dms/image/v2/D5603AQEGiNMCx5slNg/profile-displayphoto-shrink_200_200/B56ZVSocG_GoAY-/0/1740848091279?e=1758153600&v=beta&t=5OgBDTxdq1xw7goO_FhznVP8uAeQlRddfXbB7I_PvVs"
+                    shape='circle'
+                    size="xlarge">
+                    <Badge value="1" severity="danger"/>
+                </Avatar>
+            </div>
+        </a>
     );
 
     return (
         <div className="card">
-            <Toolbar start={startContent} center={centerContent} end={endContent} />
+            <Toolbar start={startContent} center={<></>} end={endContent} />
         </div>
     );
 }

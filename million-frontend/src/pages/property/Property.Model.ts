@@ -5,6 +5,7 @@ export type PropertyFiltered = {
     price: number,
     code: string,
     year: number,
+    image: string,
     createdOnUtc: Date
 }
 

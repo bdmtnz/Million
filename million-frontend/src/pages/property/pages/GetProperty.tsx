@@ -8,12 +8,15 @@ import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import AppPaginator from "../../../shared/components/AppPaginator";
+import { useNavigate } from "react-router";
 
 const GetProperty = () => {
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(5);
     const [total, setTotal] = useState(0);
     const [properties, setProperties] = useState<PropertyFiltered[]>([])
+    
+    const navigate = useNavigate();
 
     useEffect(() => {
         PropertyService.get(undefined, pageSize, page).then(response => {
@@ -34,33 +37,35 @@ const GetProperty = () => {
         }
     }, [pageSize])
 
-    const formatCurrency = (value) => {
+    const formatCurrency = (value: number) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
     };
 
-    const formatDate = (value) => {
-        return value.split('T')[0]
+    const formatDate = (value: Date) => {
+        return value.toString().split('T')[0]
     };
 
-    const imageBodyTemplate = (product) => (
+    const imageBodyTemplate = (property: PropertyFiltered) => (
         <div className="w-16 aspect-square">
-            <img className="w-full h-full object-cover rounded-xl" src={product.image} alt='property-img' />
+            <img className="w-full h-full object-cover rounded-xl" src={property.image} alt='property-img' />
         </div>
     )
 
-    const priceBodyTemplate = (product) => (
+    const priceBodyTemplate = (property: PropertyFiltered) => (
         <div>
             <p className="text-right">
-                {formatCurrency(product.price)}
+                {formatCurrency(property.price)}
             </p>
         </div>
     )
 
-    const createBodyTemplate = (product) => <p>{formatDate(product.createdOnUtc)}</p>
+    const createBodyTemplate = (property: PropertyFiltered) => <p>{formatDate(property.createdOnUtc)}</p>
 
-    const actionsBodyTemplate = (product) => {
+    const actionsBodyTemplate = (property: PropertyFiltered) => {
         return (
-            <Button icon="pi pi-eye" rounded outlined />
+            <Button icon="pi pi-eye" rounded outlined onClick={() => {
+                navigate(`/${property.id}`)
+            }}/>
         )
     };
 
