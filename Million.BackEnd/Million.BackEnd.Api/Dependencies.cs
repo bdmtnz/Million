@@ -32,12 +32,8 @@ namespace Million.BackEnd.Api
                         policy.AllowAnyHeader().AllowAnyOrigin();
 
                         policy.WithOrigins(
-                                "http://localhost:4200",
-                                "http://localhost:4200/",
-                                "https://gym-manager-v1.azurewebsites.net",
-                                "https://gym-manager-v1.azurewebsites.net/",
-                                "https://gymmanager.com.co",
-                                "https://gymmanager.com.co/",
+                                "http://localhost:5173",
+                                "http://localhost:5173/",
                                 "http://127.0.0.1",
                                 "http://127.0.0.1:80")
                             .AllowAnyHeader()

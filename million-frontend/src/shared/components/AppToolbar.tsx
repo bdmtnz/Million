@@ -20,9 +20,7 @@ const AppToolbar = () => {
 
     const startContent = (
         <React.Fragment>
-            <Button icon="pi pi-plus" className="mr-2" />
-            <Button icon="pi pi-print" className="mr-2" />
-            <Button icon="pi pi-upload" />
+            <p>Million Test</p>
         </React.Fragment>
     );
 

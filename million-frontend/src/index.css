@@ -1,3 +1,18 @@
 @import "tailwindcss";
 @import 'primereact/resources/themes/lara-dark-blue/theme.css' layer(primereact);
 @import 'primeicons/primeicons.css';
+
+/* Reduce el tamaño del botón */
+.p-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+/* Reduce el tamaño del input de texto */
+.p-inputtext {
+  font-size: 0.8rem;
+}
+
+.p-toolbar {
+  padding: 0.5rem 1rem;
+}

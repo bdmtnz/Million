@@ -1,7 +1,18 @@
+import { useEffect } from "react";
+import { useLoaderData } from "react-router";
+
 const DetailProperty = () => {
+    const data = useLoaderData()
+
+    // useEffect(() => {
+    //     alert(JSON.stringify(data))
+    // }, []);
+    
     return (
         <>
-            Detail works!
+            Property detail
+            {data.name}
+            <p>{data.price}</p>
         </>
     )
 }

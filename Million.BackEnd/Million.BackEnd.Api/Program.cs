@@ -1,6 +1,4 @@
 using Million.BackEnd.Api;
-using Million.BackEnd.Application;
-using Million.BackEnd.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +20,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("_myAllowSpecificOrigins");
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
