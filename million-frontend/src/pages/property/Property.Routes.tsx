@@ -6,7 +6,7 @@ export const appPropertyChildren = [
     { index: true, Component: GetProperty },
     { 
         path: ":propertyId", 
-        loader: async ({ params }) => {
+        loader: async ({ params }: any) => {
             const response = await PropertyService.getById(params.propertyId)
             return { ...response.data }
         },

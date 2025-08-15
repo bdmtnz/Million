@@ -1,58 +1,90 @@
-import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Rating } from "primereact/rating";
-import { Tag } from "primereact/tag";
 import { useEffect, useState } from "react";
 import { PropertyService } from "../Property.Service";
-import type { Pagination } from "../../../shared/Models/Responses";
 import type { PropertyFiltered } from "../Property.Model";
+import { IconField } from "primereact/iconfield";
+import { InputIcon } from "primereact/inputicon";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import AppPaginator from "../../../shared/components/AppPaginator";
 
 const GetProperty = () => {
-    const [pagination, setPagination] = useState({} as Pagination<PropertyFiltered>)
-    const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(5);
+    const [total, setTotal] = useState(0);
+    const [properties, setProperties] = useState<PropertyFiltered[]>([])
 
     useEffect(() => {
-        PropertyService.get(undefined, 5, 1).then(response => setPagination(response.data))
-    }, []);
+        PropertyService.get(undefined, pageSize, page).then(response => {
+            setProperties(response.data.page)
+            setTotal(response.data.total)
+        })
+    }, [page])
+
+    useEffect(() => {
+        if (page !== 1) {
+            setPage(1)
+        }
+        else {
+            PropertyService.get(undefined, pageSize, page).then(response => {
+                setProperties(response.data.page)
+                setTotal(response.data.total)
+            })
+        }
+    }, [pageSize])
 
     const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
     };
 
-    const imageBodyTemplate = (product) => {
-        return <img src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`} alt={product.image} className="w-6rem shadow-2 border-round" />;
+    const formatDate = (value) => {
+        return value.split('T')[0]
     };
 
-    const priceBodyTemplate = (product) => {
-        return formatCurrency(product.price);
-    };
+    const imageBodyTemplate = (product) => (
+        <div className="w-16 aspect-square">
+            <img className="w-full h-full object-cover rounded-xl" src={product.image} alt='property-img' />
+        </div>
+    )
 
-    const ratingBodyTemplate = (product) => {
-        return <Rating value={product.rating} readOnly cancel={false} />;
-    };
+    const priceBodyTemplate = (product) => (
+        <div>
+            <p className="text-right">
+                {formatCurrency(product.price)}
+            </p>
+        </div>
+    )
+
+    const createBodyTemplate = (product) => <p>{formatDate(product.createdOnUtc)}</p>
 
     const actionsBodyTemplate = (product) => {
-        return <Tag value={product.inventoryStatus}></Tag>;
+        return (
+            <Button icon="pi pi-eye" rounded outlined />
+        )
     };
 
     const header = (
         <div className="flex flex-wrap align-items-center justify-content-between gap-2">
-            <span className="text-xl text-900 font-bold">Products</span>
-            <Button icon="pi pi-refresh" rounded raised />
+            <IconField iconPosition="left">
+                <InputIcon className="pi pi-search" />
+                <InputText placeholder="Search" />
+            </IconField>
         </div>
     );
-    const footer = `In total there are ${products ? products.length : 0} products.`;
+
+    const footer = () => <AppPaginator total={total} pageSize={pageSize} setPageSize={setPageSize} setPage={setPage} />
 
     return (
         <div className="card">
-            <DataTable value={products} header={header} footer={footer} tableStyle={{ minWidth: '60rem' }}>
+            <DataTable value={properties} header={header} footer={footer} tableStyle={{ minWidth: '40rem' }}>
+                <Column header="Image" body={imageBodyTemplate} className="w-24"></Column>
                 <Column field="name" header="Name"></Column>
-                <Column header="Image" body={imageBodyTemplate}></Column>
-                <Column field="price" header="Price" body={priceBodyTemplate}></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="rating" header="Reviews" body={ratingBodyTemplate}></Column>
-                <Column header="Actions" body={actionsBodyTemplate}></Column>
+                <Column field="address" header="Address"></Column>
+                <Column field="price" header="Price" body={priceBodyTemplate} className="w-30"></Column>
+                <Column field="year" header="Year" className="w-24"></Column>
+                <Column field="createdOnUtc" header="Created At" body={createBodyTemplate} className="w-36"></Column>
+                <Column header="Actions" body={actionsBodyTemplate} className="w-24"></Column>
             </DataTable>
         </div>
     );

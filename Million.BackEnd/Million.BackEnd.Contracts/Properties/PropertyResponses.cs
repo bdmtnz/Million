@@ -19,7 +19,7 @@
         string? Image,
         PropertyOwnerResponse Owner,
         PropertyTraceResponse? Trace,
-        DateTime CratedOnUtc);
+        DateTime CreatedOnUtc);
     public record PropertyFilteredResponse(
         string Id,
         string Name,
@@ -27,5 +27,6 @@
         decimal Price,
         string Code,
         int Year,
-        DateTime CratedOnUtc);
+        string Image,
+        DateTime CreatedOnUtc);
 }
