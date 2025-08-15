@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { Property, PropertyFiltered } from "./Property.Model";
-import type { Pagination } from "../../shared/Models/Responses";
+import type { Pagination } from "../../shared/models/Responses";
 
 const baseURL = "https://localhost:7257";
 

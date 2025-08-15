@@ -4,7 +4,7 @@ import { Outlet } from "react-router"
 const AppProperty = () => {
     return (
         <div className="flex flex-col gap-8">
-            <div className="page-header">
+            <div className="page-header px-10 sm:px-20">
                 <h1 className="text-2xl font-bold">
                     Properties
                 </h1>

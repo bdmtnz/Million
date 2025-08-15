@@ -1,15 +1,23 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import { Outlet } from 'react-router'
+import { Link, Outlet } from 'react-router'
 import './App.css'
 import AppToolbar from './shared/components/AppToolbar'
+import { BreadCrumb } from 'primereact/breadcrumb'
+import { useBreadcrumbs } from './shared/contexts/BreadcrumbContext'
 
 function App() {
+  const {items} = useBreadcrumbs()
 
+  const home = {
+    template: () => <Link to="/"><i className="pi pi-home" /></Link>
+  };
+  
   return (
     <>
       <AppToolbar/>
-      <div className='px-10 py-5 sm:px-20 sm:py-10'>        
+      <BreadCrumb model={items} home={home} />
+      <div className='py-5 sm:py-10'>        
         <Outlet />
       </div>
     </>
