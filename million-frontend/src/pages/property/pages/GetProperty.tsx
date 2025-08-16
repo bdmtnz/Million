@@ -94,7 +94,7 @@ const GetProperty = () => {
         <div className="w-full flex flex-col items-center">
             <div className="card px-10 sm:px-20 flex flex-col gap-4 w-full max-w-7xl">
                 <div>
-                    <div className="grid gap-2 grid-cols-1 sm:grid-cols-3">
+                    <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                         <div className="w-full">
                             <span className="text-xs">Keyword</span>
                             <fieldset className="bg-gray-700 rounded-md p-1">                                
@@ -107,17 +107,17 @@ const GetProperty = () => {
                                 />
                             </fieldset>
                         </div>
-                        <div className="w-full max-w-71 flex justify-between gap-2">
-                            <div>
+                        <div className="w-full flex justify-between gap-2">
+                            <div className="w-full">
                                 <span className="text-xs">Price</span>
-                                <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
+                                <fieldset className="bg-gray-700 rounded-md p-1 gap-1 grid grid-cols-2">
                                     <InputNumber 
                                         value={filter.min}
                                         onValueChange={(e: InputNumberValueChangeEvent) => setFilter({ ...filter, min: e.value ?? null })} 
                                         mode="currency" 
-                                        currency="USD" 
+                                        currency="USD"
                                         placeholder="Min"
-                                        size={6}
+                                        size={1}
                                     />
                                     <InputNumber 
                                         value={filter.max} 
@@ -125,7 +125,7 @@ const GetProperty = () => {
                                         mode="currency" 
                                         currency="USD" 
                                         placeholder="Max"
-                                        size={6}
+                                        size={1}
                                     />
                                 </fieldset>
                             </div>
