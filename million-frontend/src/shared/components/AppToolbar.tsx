@@ -12,7 +12,7 @@ const AppToolbar = () => {
                 alt="million-logo" 
             />
         </React.Fragment>
-    );
+    )
 
     const endContent = (
         <a href="https://www.linkedin.com/in/bdmtnz/" target="_blank" rel="noopener noreferrer">
@@ -27,13 +27,15 @@ const AppToolbar = () => {
                 </Avatar>
             </div>
         </a>
-    );
+    )
 
     return (
-        <div className="card">
-            <Toolbar start={startContent} end={endContent} />
+        <div className="card bg-[#1f2937] flex justify-center">
+            <div className="w-full max-w-7xl">
+                <Toolbar start={startContent} end={endContent} />
+            </div>
         </div>
-    );
+    )
 }
 
 export default AppToolbar
