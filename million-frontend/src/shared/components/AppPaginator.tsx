@@ -1,6 +1,5 @@
 import { Dropdown } from "primereact/dropdown";
 import { Paginator, type PaginatorPageChangeEvent } from "primereact/paginator";
-import { Tooltip } from "primereact/tooltip";
 import { useState } from "react";
 
 
@@ -28,16 +27,16 @@ const AppPaginator = ({ total, pageSize, setPageSize, setPage } : AppPaginatorPr
 
     const template = {
         layout: 'RowsPerPageDropdown PrevPageLink PageLinks NextPageLink CurrentPageReport',
-        RowsPerPageDropdown: (options) => {
+        RowsPerPageDropdown: (options:any) => {
             return (
                 <div className="flex align-items-center">
                     <Dropdown value={options.value} options={dropdownOptions} onChange={options.onChange} className="w-25"/>
                 </div>
             );
         },
-        CurrentPageReport: (options) => {
+        CurrentPageReport: (options:any) => {
             return (
-                <span style={{ color: 'var(--text-color)', userSelect: 'none', textAlign: 'center' }} className="w-25 text-smw">
+                <span className="w-25 text-sm text-white">
                     {options.first} - {options.last} de {options.totalRecords}
                 </span>
             );
