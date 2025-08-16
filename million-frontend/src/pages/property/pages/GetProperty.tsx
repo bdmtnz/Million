@@ -38,7 +38,7 @@ const GetProperty = () => {
     }, [])
 
     useEffect(() => {
-        PropertyService.get(undefined, pageSize, page).then(response => {
+        PropertyService.get(filter.keyword, pageSize, page, filter.min, filter.max).then(response => {
             setProperties(response.data.page)
             setTotal(response.data.total)
         })
@@ -49,7 +49,7 @@ const GetProperty = () => {
             setPage(1)
         }
         else {
-            PropertyService.get(undefined, pageSize, page).then(response => {
+            PropertyService.get(filter.keyword, pageSize, page, filter.min, filter.max).then(response => {
                 setProperties(response.data.page)
                 setTotal(response.data.total)
             })
@@ -87,7 +87,12 @@ const GetProperty = () => {
                 <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
                     <IconField iconPosition="left">
                         <InputIcon className="pi pi-search" />
-                        <InputText placeholder="Search" />
+                        <InputText 
+                            placeholder="Search"
+                            autoFocus
+                            value={filter.keyword}
+                            onChange={e => setFilter({...filter, keyword: e.target.value})}
+                        />
                     </IconField>
                 </fieldset>
             </div>
@@ -115,7 +120,10 @@ const GetProperty = () => {
             <div className="flex items-end">
                 <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1 h-13.5">
                     <Button icon="pi pi-search" severity="success" onClick={() => {
-
+                        PropertyService.get(filter.keyword, pageSize, page, filter.min, filter.max).then(response => {
+                            setProperties(response.data.page)
+                            setTotal(response.data.total)
+                        })
                     }}/>
                 </fieldset>
             </div>

@@ -5,6 +5,6 @@ import type { Pagination } from "../../shared/models/Responses";
 const baseURL = "https://localhost:7257";
 
 export const PropertyService = {
-    get: (keyword?: string, limit: number = 5, offset: number = 1, from?: number, to?: number) => axios.get<Pagination<PropertyFiltered>>(`${baseURL}/api/Property?keyword=${keyword??''}&limit=${limit??''}&offset=${offset??''}&from=${from??''}&to=${to??''}`),
+    get: (keyword?: string, limit: number = 5, offset: number = 1, from?: number | null, to?: number | null) => axios.get<Pagination<PropertyFiltered>>(`${baseURL}/api/Property?keyword=${keyword??''}&limit=${limit??''}&offset=${offset??''}&from=${from??''}&to=${to??''}`),
     getById: (id: string) => axios.get<Property>(`${baseURL}/api/Property/${id}`)
 }
