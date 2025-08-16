@@ -87,7 +87,8 @@ const GetProperty = () => {
                 <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
                     <IconField iconPosition="left">
                         <InputIcon className="pi pi-search" />
-                        <InputText 
+                        <input
+                            pInput
                             placeholder="Search"
                             autoFocus
                             value={filter.keyword}
@@ -119,7 +120,7 @@ const GetProperty = () => {
             </div>
             <div className="flex items-end">
                 <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1 h-13.5">
-                    <Button icon="pi pi-search" severity="success" onClick={() => {
+                    <Button icon="pi pi-search" severity="success" type="button" onClick={() => {
                         PropertyService.get(filter.keyword, pageSize, page, filter.min, filter.max).then(response => {
                             setProperties(response.data.page)
                             setTotal(response.data.total)

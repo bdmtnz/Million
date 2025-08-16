@@ -1,4 +1,6 @@
+import { Dropdown } from "primereact/dropdown";
 import { Paginator, type PaginatorPageChangeEvent } from "primereact/paginator";
+import { Tooltip } from "primereact/tooltip";
 import { useState } from "react";
 
 
@@ -9,7 +11,7 @@ export type AppPaginatorProps = {
     setPage: (page: number) => void
 }
 const AppPaginator = ({ total, pageSize, setPageSize, setPage } : AppPaginatorProps) => {
-    const [first, setFirst] = useState(1);
+    const [first, setFirst] = useState(0);
 
     const onPageChange = (event: PaginatorPageChangeEvent) => {
         setFirst(event.first);
@@ -17,9 +19,34 @@ const AppPaginator = ({ total, pageSize, setPageSize, setPage } : AppPaginatorPr
         setPage(event.page + 1)
     };
 
+    
+    const dropdownOptions = [
+        { label: 5, value: 5 },
+        { label: 10, value: 10 },
+        { label: 15, value: 15 }
+    ];
+
+    const template = {
+        layout: 'RowsPerPageDropdown PrevPageLink PageLinks NextPageLink CurrentPageReport',
+        RowsPerPageDropdown: (options) => {
+            return (
+                <div className="flex align-items-center">
+                    <Dropdown value={options.value} options={dropdownOptions} onChange={options.onChange} className="w-25"/>
+                </div>
+            );
+        },
+        CurrentPageReport: (options) => {
+            return (
+                <span style={{ color: 'var(--text-color)', userSelect: 'none', textAlign: 'center' }} className="w-25 text-smw">
+                    {options.first} - {options.last} de {options.totalRecords}
+                </span>
+            );
+        }
+    };
+
     return (
         <div className="card">
-            <Paginator first={first} rows={pageSize} totalRecords={total} rowsPerPageOptions={[5, 10, 15]} pageLinkSize={3} onPageChange={onPageChange} />
+            <Paginator template={template} first={first} rows={pageSize} totalRecords={total} rowsPerPageOptions={[5, 10, 15]} pageLinkSize={3} onPageChange={onPageChange} />
         </div>
     );
 }
