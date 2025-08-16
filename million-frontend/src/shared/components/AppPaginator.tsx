@@ -29,17 +29,17 @@ const AppPaginator = ({ total, pageSize, setPageSize, setPage } : AppPaginatorPr
         layout: 'RowsPerPageDropdown PrevPageLink PageLinks NextPageLink CurrentPageReport',
         RowsPerPageDropdown: (options:any) => {
             return (
-                <div className="flex align-items-center">
+                <div className="align-items-center hidden sm:flex">
                     <Dropdown value={options.value} options={dropdownOptions} onChange={options.onChange} className="w-25"/>
                 </div>
-            );
+            )
         },
         CurrentPageReport: (options:any) => {
             return (
-                <span className="w-25 text-sm text-white">
+                <span className="w-25 text-sm text-white text-center">
                     {options.first} - {options.last} de {options.totalRecords}
                 </span>
-            );
+            )
         }
     };
 
