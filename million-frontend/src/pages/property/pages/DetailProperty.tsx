@@ -16,7 +16,7 @@ const DetailProperty = () => {
             {
                 label: 'Detail'
             }
-        ])     
+        ])
     }, [])
     
     return (
@@ -32,7 +32,7 @@ const DetailProperty = () => {
                     <h1 className="text-2xl font-bold">{data.name}</h1>
                 </div>
             </div>
-            <div className="px-10 sm:px-20">
+            <div className="px-10 sm:px-20 max-w-7xl">
                 <div className="flex flex-col gap-10">
                     <div>
                         <h2 className="text-xl font-semibold border-b-2 border-gray-200 pb-2 mb-4">Property details</h2>

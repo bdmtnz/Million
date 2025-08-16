@@ -91,67 +91,69 @@ const GetProperty = () => {
     }
 
     return (
-        <div className="card px-10 sm:px-20 flex flex-col gap-4">
-            <div className="px-4">
-                <div className="flex gap-2">
-                    <div>
-                        <span className="text-xs">Keyword</span>
-                        <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
-                            <IconField iconPosition="left">
-                                <InputIcon className="pi pi-search" />
-                                <InputText
-                                    key="id-32131231313SW"
-                                    placeholder="Search"
-                                    type="text"
-                                    value={filter.keyword}
-                                    onChange={handleInputChange}
+        <div className="w-full flex flex-col items-center">
+            <div className="card px-10 sm:px-20 flex flex-col gap-4 w-full max-w-7xl">
+                <div className="px-4">
+                    <div className="flex gap-2">
+                        <div>
+                            <span className="text-xs">Keyword</span>
+                            <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
+                                <IconField iconPosition="left">
+                                    <InputIcon className="pi pi-search" />
+                                    <InputText
+                                        key="id-32131231313SW"
+                                        placeholder="Search"
+                                        type="text"
+                                        value={filter.keyword}
+                                        onChange={handleInputChange}
+                                    />
+                                </IconField>
+                            </fieldset>
+                        </div>
+                        <div>
+                            <span className="text-xs">Price</span>
+                            <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
+                                <InputNumber 
+                                    value={filter.min}
+                                    onValueChange={(e: InputNumberValueChangeEvent) => setFilter({ ...filter, min: e.value ?? null })} 
+                                    mode="currency" 
+                                    currency="USD" 
+                                    placeholder="Min"
+                                    size={6}
                                 />
-                            </IconField>
-                        </fieldset>
-                    </div>
-                    <div>
-                        <span className="text-xs">Price</span>
-                        <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
-                            <InputNumber 
-                                value={filter.min}
-                                onValueChange={(e: InputNumberValueChangeEvent) => setFilter({ ...filter, min: e.value ?? null })} 
-                                mode="currency" 
-                                currency="USD" 
-                                placeholder="Min"
-                                size={6}
-                            />
-                            <InputNumber 
-                                value={filter.max} 
-                                onValueChange={(e: InputNumberValueChangeEvent) => setFilter({ ...filter, max: e.value ?? null })} 
-                                mode="currency" 
-                                currency="USD" 
-                                placeholder="Max"
-                                size={6}
-                            />
-                        </fieldset>
-                    </div>
-                    <div className="flex items-end">
-                        <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1 h-13.5">
-                            <Button icon="pi pi-search" severity="success" type="button" onClick={() => {
-                                PropertyService.get(filter.keyword, pageSize, page, filter.min, filter.max).then(response => {
-                                    setProperties(response.data.page)
-                                    setTotal(response.data.total)
-                                })
-                            }}/>
-                        </fieldset>
+                                <InputNumber 
+                                    value={filter.max} 
+                                    onValueChange={(e: InputNumberValueChangeEvent) => setFilter({ ...filter, max: e.value ?? null })} 
+                                    mode="currency" 
+                                    currency="USD" 
+                                    placeholder="Max"
+                                    size={6}
+                                />
+                            </fieldset>
+                        </div>
+                        <div className="flex items-end">
+                            <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1 h-13.5">
+                                <Button icon="pi pi-search" severity="success" type="button" onClick={() => {
+                                    PropertyService.get(filter.keyword, pageSize, page, filter.min, filter.max).then(response => {
+                                        setProperties(response.data.page)
+                                        setTotal(response.data.total)
+                                    })
+                                }}/>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
+                <DataTable value={properties}>
+                    <Column header="Image" body={imageBodyTemplate} className="w-24"></Column>
+                    <Column field="name" header="Name"></Column>
+                    <Column field="address" header="Address"></Column>
+                    <Column field="price" header="Price" body={priceBodyTemplate} className="w-30"></Column>
+                    <Column field="year" header="Year" className="w-24"></Column>
+                    <Column field="createdOnUtc" header="Created On" body={createBodyTemplate} className="w-36"></Column>
+                    <Column header="Actions" body={actionsBodyTemplate} className="w-24"></Column>
+                </DataTable>           
+                <AppPaginator total={total} pageSize={pageSize} setPageSize={setPageSize} setPage={setPage} />
             </div>
-            <DataTable value={properties}>
-                <Column header="Image" body={imageBodyTemplate} className="w-24"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="address" header="Address"></Column>
-                <Column field="price" header="Price" body={priceBodyTemplate} className="w-30"></Column>
-                <Column field="year" header="Year" className="w-24"></Column>
-                <Column field="createdOnUtc" header="Created On" body={createBodyTemplate} className="w-36"></Column>
-                <Column header="Actions" body={actionsBodyTemplate} className="w-24"></Column>
-            </DataTable>           
-            <AppPaginator total={total} pageSize={pageSize} setPageSize={setPageSize} setPage={setPage} />
         </div>
     );
 }
