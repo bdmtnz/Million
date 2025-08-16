@@ -35,27 +35,33 @@ const DetailProperty = () => {
                 </div>
             </div>
             <div className="w-full flex justify-center">
-                <div className="px-10 sm:px-20 w-full max-w-7xl">
+                <div className="px-10 pb-4 sm:px-20 w-full max-w-7xl">
                     <div className="flex flex-col gap-10">
                         <div>
                             <h2 className="text-xl font-semibold border-b-2 border-gray-200 pb-2 mb-4">Property details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <p className="text-gray-300">Address:</p>
-                                    <p className="font-medium text-gray-50">Address 4</p>
+                                    <p className="font-medium text-gray-50">{data.address}</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-300">Builded On:</p>
-                                    <p className="font-medium text-gray-50">2003</p>
+                                    <p className="font-medium text-gray-50">{data.year}</p>
                                 </div>
                                 <div className="col-span-1 md:col-span-2">
                                     <p className="text-gray-300">Price:</p>
                                     <p className="text-3xl font-bold text-emerald-600">{Utils.formatCurrency(data.price)}</p>
                                 </div>
                             </div>
-                            <div className="mt-4 text-sm text-gray-400">
-                                <p>ID: {data.id}</p>
-                                <p>Code: {data.code}</p>
+                            <div className="mt-6 text-xs text-gray-400">
+                                <p className="flex gap-4">
+                                    <span className="w-10">ID:</span>
+                                    <span className="line-clamp-1 text-ellipsis">{data.id}</span>
+                                </p>
+                                <p className="flex gap-4">
+                                    <span className="w-10">Code:</span>
+                                    <span className="line-clamp-1 text-ellipsis">{data.code}</span>
+                                </p>
                             </div>
                         </div>
                         <div>

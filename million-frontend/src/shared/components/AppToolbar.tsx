@@ -17,7 +17,7 @@ const AppToolbar = () => {
     const endContent = (
         <a href="https://www.linkedin.com/in/bdmtnz/" target="_blank" rel="noopener noreferrer">
             <div className='flex gap-4 items-center'>
-                Brayan Martinez
+                <span className='hidden sm:inline'>Brayan Martinez</span>
                 <Avatar 
                     className="p-overlay-badge" 
                     image="https://media.licdn.com/dms/image/v2/D5603AQEGiNMCx5slNg/profile-displayphoto-shrink_200_200/B56ZVSocG_GoAY-/0/1740848091279?e=1758153600&v=beta&t=5OgBDTxdq1xw7goO_FhznVP8uAeQlRddfXbB7I_PvVs"
