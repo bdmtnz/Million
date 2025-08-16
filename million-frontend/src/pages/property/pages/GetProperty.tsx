@@ -93,9 +93,9 @@ const GetProperty = () => {
     return (
         <div className="w-full flex flex-col items-center">
             <div className="card px-10 sm:px-20 flex flex-col gap-4 w-full max-w-7xl">
-                <div className="px-4">
+                <div>
                     <div className="flex gap-2">
-                        <div className="w-70">
+                        <div className="w-full max-w-71">
                             <span className="text-xs">Keyword</span>
                             <fieldset className="bg-gray-700 rounded-md p-1">                                
                                 <InputText
@@ -107,7 +107,7 @@ const GetProperty = () => {
                                 />
                             </fieldset>
                         </div>
-                        <div className="w-70 flex justify-between">
+                        <div className="w-full max-w-71 flex justify-between gap-2">
                             <div>
                                 <span className="text-xs">Price</span>
                                 <fieldset className="bg-gray-700 rounded-md p-1 flex gap-1">
@@ -142,7 +142,7 @@ const GetProperty = () => {
                         </div>
                     </div>
                 </div>
-                <DataTable value={properties}>
+                <DataTable value={properties} className="rounded-xl">
                     <Column header="Image" body={imageBodyTemplate} className="w-24"></Column>
                     <Column field="name" header="Name"></Column>
                     <Column field="address" header="Address"></Column>

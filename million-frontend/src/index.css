@@ -24,6 +24,10 @@
   border-radius: 0 !important;
 }
 
+.p-datatable-wrapper {
+  border-radius: 0.4rem;
+}
+
 .p-paginator {
   background-color: transparent;
   border: none;
