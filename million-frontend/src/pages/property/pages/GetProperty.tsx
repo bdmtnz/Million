@@ -94,8 +94,8 @@ const GetProperty = () => {
         <div className="w-full flex flex-col items-center">
             <div className="card px-10 sm:px-20 flex flex-col gap-4 w-full max-w-7xl">
                 <div>
-                    <div className="flex gap-2">
-                        <div className="w-full max-w-71">
+                    <div className="grid gap-2 grid-cols-1 sm:grid-cols-3">
+                        <div className="w-full">
                             <span className="text-xs">Keyword</span>
                             <fieldset className="bg-gray-700 rounded-md p-1">                                
                                 <InputText
