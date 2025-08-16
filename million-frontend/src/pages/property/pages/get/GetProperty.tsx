@@ -1,17 +1,13 @@
-import { Column } from "primereact/column";
-import { DataTable } from "primereact/datatable";
-import { useEffect, useState, type ChangeEvent } from "react";
-import { PropertyService } from "../Property.Service";
-import type { PropertyFiltered } from "../Property.Model";
-import { IconField } from "primereact/iconfield";
-import { InputIcon } from "primereact/inputicon";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import AppPaginator from "../../../shared/components/AppPaginator";
-import { useNavigate } from "react-router";
-import { Utils } from "../../../shared/Utils";
-import { useBreadcrumbs } from "../../../shared/contexts/BreadcrumbContext";
-import { InputNumber, type InputNumberValueChangeEvent } from "primereact/inputnumber";
+import { useEffect, useState, type ChangeEvent } from "react"
+import { PropertyService } from "../../Property.Service"
+import type { PropertyFiltered } from "../../Property.Model"
+import { InputText } from "primereact/inputtext"
+import { Button } from "primereact/button"
+import AppPaginator from "../../../../shared/components/AppPaginator"
+import { useBreadcrumbs } from "../../../../shared/contexts/BreadcrumbContext"
+import { InputNumber, type InputNumberValueChangeEvent } from "primereact/inputnumber"
+import PropertyTable from "./components/PropertyTable"
+import PropertyCards from "./components/PropertyCards"
 
 type Filter = {
     keyword: string| null,
@@ -32,8 +28,6 @@ const GetProperty = () => {
     const [total, setTotal] = useState(0);
     const [properties, setProperties] = useState<PropertyFiltered[]>([])
     const [filter, setFilter] = useState<Filter>(filterInitial)
-    
-    const navigate = useNavigate()
 
     useEffect(() => {
         set([
@@ -61,30 +55,6 @@ const GetProperty = () => {
             })
         }
     }, [pageSize])
-
-    const imageBodyTemplate = (property: PropertyFiltered) => (
-        <div className="w-16 aspect-square">
-            <img className="w-full h-full object-cover rounded-xl" src={property.image} alt='property-img' />
-        </div>
-    )
-
-    const priceBodyTemplate = (property: PropertyFiltered) => (
-        <div>
-            <p className="text-right">
-                {Utils.formatCurrency(property.price)}
-            </p>
-        </div>
-    )
-
-    const createBodyTemplate = (property: PropertyFiltered) => <p>{Utils.formatDate(property.createdOnUtc)}</p>
-
-    const actionsBodyTemplate = (property: PropertyFiltered) => {
-        return (
-            <Button icon="pi pi-eye" rounded outlined onClick={() => {
-                navigate(`/${property.id}`)
-            }}/>
-        )
-    }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFilter({...filter, keyword: e.target.value})
@@ -142,15 +112,12 @@ const GetProperty = () => {
                         </div>
                     </div>
                 </div>
-                <DataTable value={properties} className="rounded-xl">
-                    <Column header="Image" body={imageBodyTemplate} className="w-24"></Column>
-                    <Column field="name" header="Name"></Column>
-                    <Column field="address" header="Address"></Column>
-                    <Column field="price" header="Price" body={priceBodyTemplate} className="w-30"></Column>
-                    <Column field="year" header="Year" className="w-24"></Column>
-                    <Column field="createdOnUtc" header="Created On" body={createBodyTemplate} className="w-36"></Column>
-                    <Column header="Actions" body={actionsBodyTemplate} className="w-24"></Column>
-                </DataTable>           
+                <div className="hidden lg:inline">
+                    <PropertyTable properties={properties} />
+                </div>
+                <div className="inline lg:hidden">
+                    <PropertyCards properties={properties} />
+                </div>
                 <AppPaginator total={total} pageSize={pageSize} setPageSize={setPageSize} setPage={setPage} />
             </div>
         </div>

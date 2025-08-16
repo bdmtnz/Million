@@ -1,4 +1,4 @@
-import GetProperty from "./pages/GetProperty";
+import GetProperty from "./pages/get/GetProperty";
 import DetailProperty from "./pages/DetailProperty";
 import { PropertyService } from "./Property.Service";
 
