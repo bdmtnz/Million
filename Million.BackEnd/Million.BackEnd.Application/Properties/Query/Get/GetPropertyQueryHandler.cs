@@ -15,7 +15,7 @@ namespace Million.BackEnd.Application.Properties.Query.Get
 
         public async Task<ErrorOr<PaginationResponse<List<PropertyFilteredResponse>>>> Handle(GetPropertyQuery request, CancellationToken cancellationToken)
         {
-            var keyword = request.Keyword is null ? string.Empty : request.Keyword.ToLower().Replace(" ", "");
+            var keyword = request.Keyword is null ? string.Empty : request.Keyword.ToLower().Trim(new char[] { ' ' });
 
             FilterDefinition<Property> filter = (
                 string.IsNullOrEmpty(keyword) ? 
