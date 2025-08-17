@@ -23,6 +23,7 @@ const filterInitial: Filter = {
 
 const GetProperty = () => {    
     const {set} = useBreadcrumbs()
+    const [first, setFirst] = useState(0);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(3);
     const [total, setTotal] = useState(0);
@@ -62,6 +63,7 @@ const GetProperty = () => {
 
     const handleSubmit = () => {
         if (page !== 1) {
+            setFirst(0)
             setPage(1)
         }
         else {
@@ -131,7 +133,7 @@ const GetProperty = () => {
                 <div className="inline lg:hidden">
                     <PropertyCards properties={properties} />
                 </div>
-                <AppPaginator total={total} pageSize={pageSize} setPageSize={setPageSize} setPage={setPage} />
+                <AppPaginator first={first} total={total} pageSize={pageSize} setFirst={setFirst} setPageSize={setPageSize} setPage={setPage} />
             </div>
         </div>
     );

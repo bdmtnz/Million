@@ -1,16 +1,15 @@
 import { Dropdown } from "primereact/dropdown";
 import { Paginator, type PaginatorPageChangeEvent } from "primereact/paginator";
-import { useState } from "react";
-
 
 export type AppPaginatorProps = {
+    first: number,
     total: number,
     pageSize: number,
+    setFirst: (first: number) => void,
     setPageSize: (pageSize: number) => void,
     setPage: (page: number) => void
 }
-const AppPaginator = ({ total, pageSize, setPageSize, setPage } : AppPaginatorProps) => {
-    const [first, setFirst] = useState(0);
+const AppPaginator = ({ first, total, pageSize, setFirst, setPageSize, setPage } : AppPaginatorProps) => {
 
     const onPageChange = (event: PaginatorPageChangeEvent) => {
         setFirst(event.first);
