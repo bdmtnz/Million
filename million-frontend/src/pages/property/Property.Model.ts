@@ -1,3 +1,10 @@
+type PropertyOwner = {
+    name: string,
+    address: string,
+    photo: string,
+    bornOnUtc: Date
+}
+
 export type PropertyFiltered = {
     id: string,
     name: string,
@@ -6,6 +13,7 @@ export type PropertyFiltered = {
     code: string,
     year: number,
     image: string,
+    owner: PropertyOwner,
     createdOnUtc: Date
 }
 
@@ -17,12 +25,7 @@ export type Property = {
     code: string,
     year: number,
     image: string,
-    owner: {
-        name: string,
-        address: string,
-        photo: string,
-        bornOnUtc: Date
-    },
+    owner: PropertyOwner,
     trace: {
         name: string,
         value: number,

@@ -43,8 +43,8 @@ const PropertyCards = ({ properties }: PropertyCardsProps) => {
                                         alt="Owner 4"
                                     />
                                     <div>
-                                        <h3 className="text-xl font-bold text-center">Owner 4</h3>
-                                        <p className="text-gray-300 text-center text-sm">Owner Address 4</p>
+                                        <h3 className="text-xl font-bold text-center">{p.owner.name}</h3>
+                                        <p className="text-gray-300 text-center text-sm">{p.owner.address}</p>
                                     </div>
                                 </div>
                             </div>
