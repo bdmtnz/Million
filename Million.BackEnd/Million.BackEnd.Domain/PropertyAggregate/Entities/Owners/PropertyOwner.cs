@@ -21,6 +21,8 @@ namespace Million.BackEnd.Domain.PropertyAggregate.Entities.Owners
 
         public static PropertyOwner Create(PropertyOwnerId id, string name, string address, string photo, DateTime bornOnUtc)
         {
+            ArgumentException.ThrowIfNullOrWhiteSpace(name, nameof(name));
+
             return new PropertyOwner(id, name, address, photo, bornOnUtc);
         }
     }

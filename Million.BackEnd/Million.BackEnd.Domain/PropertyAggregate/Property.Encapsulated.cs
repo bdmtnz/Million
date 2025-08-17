@@ -23,6 +23,10 @@ namespace Million.BackEnd.Domain.PropertyAggregate
 
         public static Property Create(PropertyId id, string name, string address, decimal price, int year)
         {
+            ArgumentException.ThrowIfNullOrWhiteSpace(name, nameof(name));
+            ArgumentException.ThrowIfNullOrWhiteSpace(address, nameof(address));
+            ArgumentNullException.ThrowIfNull(id, nameof(id));
+
             var code = Ulid.NewUlid().ToString();
             return new Property(id, name, address, price, code, year, DateTime.UtcNow);
         }

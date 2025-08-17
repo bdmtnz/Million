@@ -1,5 +1,6 @@
 ﻿using Million.BackEnd.Domain.Common.Models;
 using Million.BackEnd.Domain.PropertyAggregate.Entities.Images.ValueObjects;
+using System.Xml.Linq;
 
 namespace Million.BackEnd.Domain.PropertyAggregate.Entities.Images
 {
@@ -17,6 +18,8 @@ namespace Million.BackEnd.Domain.PropertyAggregate.Entities.Images
 
         public static PropertyImage Create(PropertyImageId id, string file)
         {
+            ArgumentException.ThrowIfNullOrWhiteSpace(file, nameof(file));
+
             return new PropertyImage(id, file, true);
         }
 

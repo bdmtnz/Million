@@ -19,6 +19,8 @@ namespace Million.BackEnd.Domain.PropertyAggregate.Entities.Traces
 
         public static PropertyTrace Create(PropertyTraceId id, string name, decimal value, DateTime saledOnUtc)
         {
+            ArgumentException.ThrowIfNullOrWhiteSpace(name, nameof(name));
+
             return new PropertyTrace(id, name, value, saledOnUtc);
         }
     }
