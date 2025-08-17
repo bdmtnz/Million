@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+# 🚀 Million Brayan Technical Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A brief, one-sentence description of your project. React + TypeScript + Vite
 
-Currently, two official plugins are available:
+## 📝 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - [Prerequisites](https://www.google.com/search?q=%23prerequisites)
+  - [Installation](https://www.google.com/search?q=%23installation)
+  - [Usage](https://www.google.com/search?q=%23usage)
+  - [Contributing](https://www.google.com/search?q=%23contributing)
+  - [License](https://www.google.com/search?q=%23license)
 
-## Expanding the ESLint configuration
+-----
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔧 Prerequisites
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Before you begin, ensure you have the following installed on your system:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+  - **Node.js** (version 18 or higher is recommended)
+  - **npm** or **Yarn**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+You can check your Node.js and npm versions by running these commands in your terminal:
+
+```bash
+node -v
+npm -v
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+-----
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💻 Installation
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Follow these steps to set up the project locally.
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/bdmtnz/Million.git
+    cd Million/million-frontend
+    ```
+
+2.  **Install dependencies:**
+    Use your preferred package manager to install all the necessary packages.
+
+    ```bash
+    npm install
+    # or
+    # yarn install
+    ```
+
+3.  **Configure environment variables:**
+    Create if not exist a `.env` file in the root of the project.
+
+    ```
+    # Example
+    VITE_API_URL=https://localhost:7257
+    ```
+
+-----
+
+## ▶️ Usage
+
+To run the application in **development mode**, use the following command:
+
+```bash
+npm run dev
+# or
+# yarn dev
 ```
+
+This will start the development server. The app will be available at `http://localhost:5173` (or another port if 5173 is in use).
+
+To create a production build, run:
+
+```bash
+npm run build
+```
+
+This command generates the static files in the `dist` directory.
