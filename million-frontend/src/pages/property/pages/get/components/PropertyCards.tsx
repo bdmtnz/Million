@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import { Utils } from "../../../../../shared/Utils"
 import type { PropertyFiltered } from "../../../Property.Model"
 
@@ -5,11 +6,16 @@ type PropertyCardsProps = {
     properties: PropertyFiltered[]
 }
 const PropertyCards = ({ properties }: PropertyCardsProps) => {
+    const navigate = useNavigate()
+    
     return (
         <div className="flex flex-col gap-2">
             {
                 properties.map(p => (
-                    <div>
+                    <div
+                        onClick={() => {
+                            navigate(`/${p.id}`)
+                        }}>
                         <div className="flex bg-[#374151] rounded-md shadow-2xl">
                             <div className="relative w-full overflow-hidden rounded-md sm:rounded-r-none border-5 border-[#374151]">
                                 <img

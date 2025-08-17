@@ -8,7 +8,7 @@ import { useNavigate } from "react-router"
 type PropertyTableProps = {
     properties: PropertyFiltered[]
 }
-const PropertyTable = ({ properties } : PropertyTableProps) => {    
+const PropertyTable = ({ properties } : PropertyTableProps) => {
     const navigate = useNavigate()
 
     const imageBodyTemplate = (property: PropertyFiltered) => (
