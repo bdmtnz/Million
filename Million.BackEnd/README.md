@@ -79,6 +79,11 @@ Follow these steps to set up and run the application in your local environment.
 
 The API will be available at `http://localhost:5122` (or the port configured in `launchSettings.json`).
 
+  - Open Swagger Documentation:
+    `http://localhost:5122/swagger/index.html`
+
+  - Create seeder:
+    `Execute the create seeder endpoint /api/Seeder`
 -----
 
 ## ✅ Running Tests
