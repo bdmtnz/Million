@@ -29,7 +29,7 @@ const PropertyCards = ({ properties }: PropertyCardsProps) => {
                                     </div>
                                     <img
                                         className="w-16 h-16 rounded-full object-cover sm:hidden border-3 border-white shadow-2xl"
-                                        src="https://i.imgur.com/HYUPOUX.jpeg"
+                                        src={p.owner.photo}
                                         alt="Owner 4"
                                     />
                                 </div>
@@ -39,7 +39,7 @@ const PropertyCards = ({ properties }: PropertyCardsProps) => {
                                 <div className="flex flex-col items-center gap-2">
                                     <img
                                         className="w-16 h-16 rounded-full object-cover"
-                                        src="https://i.imgur.com/HYUPOUX.jpeg"
+                                        src={p.owner.photo}
                                         alt="Owner 4"
                                     />
                                     <div>
