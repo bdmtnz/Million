@@ -24,7 +24,7 @@ const filterInitial: Filter = {
 const GetProperty = () => {    
     const {set} = useBreadcrumbs()
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(3);
     const [total, setTotal] = useState(0);
     const [properties, setProperties] = useState<PropertyFiltered[]>([])
     const [filter, setFilter] = useState<Filter>(filterInitial)
