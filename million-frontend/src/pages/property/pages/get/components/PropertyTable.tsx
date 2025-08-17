@@ -29,7 +29,12 @@ const PropertyTable = ({ properties } : PropertyTableProps) => {
 
     const actionsBodyTemplate = (property: PropertyFiltered) => {
         return (
-            <Button icon="pi pi-eye" rounded outlined onClick={() => {
+            <Button 
+                icon="pi pi-eye" 
+                tooltip="Show details"
+                rounded 
+                outlined 
+                onClick={() => {
                 navigate(`/${property.id}`)
             }}/>
         )

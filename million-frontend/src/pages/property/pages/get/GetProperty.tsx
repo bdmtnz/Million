@@ -120,6 +120,7 @@ const GetProperty = () => {
                                             icon="pi pi-search" 
                                             severity="success" 
                                             type="submit"
+                                            tooltip="Search (Enter)"
                                             onClick={handleSubmit}/>
                                     </fieldset>
                                 </div>

@@ -22,7 +22,7 @@ const DetailProperty = () => {
     return (
         <>
             <div className="relative w-full h-70">
-                <img className="absolute inset-0 w-full h-full object-cover opacity-50" src={data.image} alt="Fondo borroso"/>
+                <img className="absolute inset-0 w-full h-full object-cover opacity-50 sm:opacity-25" src={data.image} alt="Fondo borroso"/>
                 <div className="relative top-0 left-0 w-full h-full backdrop-blur-xs flex items-center justify-center">
                     <div className="relative w-70 aspect-square">
                         <img className="w-full h-full object-cover" src={data.image} alt='property-img' />
