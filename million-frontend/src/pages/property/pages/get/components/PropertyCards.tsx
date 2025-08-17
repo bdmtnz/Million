@@ -10,14 +10,15 @@ const PropertyCards = ({ properties }: PropertyCardsProps) => {
             {
                 properties.map(p => (
                     <div>
-                        <div className="flex bg-[#374151] rounded-md shadow-xl">
-                            <div className="relative w-full bg-white overflow-hidden rounded-md sm:rounded-r-none">
+                        <div className="flex bg-[#374151] rounded-md shadow-2xl">
+                            <div className="relative w-full overflow-hidden rounded-md sm:rounded-r-none border-5 border-[#374151]">
                                 <img
-                                    className="w-full h-40 object-cover"
+                                    className="w-full h-50 object-cover"
                                     src={p.image}
                                     alt="house-img"
                                 />
-                                <div className="absolute inset-0 bg-black bg-opacity-30 p-6 flex items-end justify-between text-white">
+                                <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#121212] to-transparent"></div>
+                                <div className="absolute inset-0 bg-opacity-30 p-6 flex items-end justify-between text-white">
                                     <div>
                                         <h2 className="text-2xl sm:text-3xl font-bold mb-1">{p.name}</h2>
                                         <p className="text-xl sm:text-2xl font-bold mb-2">{Utils.formatCurrency(p.price)}</p>
@@ -27,7 +28,7 @@ const PropertyCards = ({ properties }: PropertyCardsProps) => {
                                         </div>
                                     </div>
                                     <img
-                                        className="w-16 h-16 rounded-full object-cover sm:hidden"
+                                        className="w-16 h-16 rounded-full object-cover sm:hidden border-3 border-white shadow-2xl"
                                         src="https://i.imgur.com/HYUPOUX.jpeg"
                                         alt="Owner 4"
                                     />

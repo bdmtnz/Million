@@ -28,5 +28,6 @@
         string Code,
         int Year,
         string Image,
+        PropertyOwnerResponse Owner,
         DateTime CreatedOnUtc);
 }
