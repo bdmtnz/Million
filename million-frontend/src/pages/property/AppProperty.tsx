@@ -9,7 +9,7 @@ const AppProperty = () => {
                     <h1 className="text-2xl font-bold">
                         Properties
                     </h1>
-                    <h3>Here you can management the properties</h3>
+                    <h3>Here you can manage the properties</h3>
                 </div>
             </div>
             <Outlet/>
