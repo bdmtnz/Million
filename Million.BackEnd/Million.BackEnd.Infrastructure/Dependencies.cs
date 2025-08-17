@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Million.BackEnd.Domain.Common.Contracts.Persistence;
 using Million.BackEnd.Infrastructure.Common.Persistence;
-using Million.BackEnd.Infrastructure.Common.Persistence.DbContexts;
-using Million.BackEnd.Infrastructure.Common.Persistence.Interceptors;
 using MongoDB.Driver;
 
 namespace Million.BackEnd.Infrastructure
