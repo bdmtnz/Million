@@ -2,8 +2,8 @@
 // import viteLogo from '/vite.svg'
 import { Outlet } from 'react-router'
 import './App.css'
-import AppToolbar from './shared/components/AppToolbar'
-import AppBreadcrumb from './shared/components/AppBreadcrumb'
+import AppToolbar from './shared/components/toolbar/AppToolbar'
+import AppBreadcrumb from './shared/components/breadcrumb/AppBreadcrumb'
 
 function App() {
   return (

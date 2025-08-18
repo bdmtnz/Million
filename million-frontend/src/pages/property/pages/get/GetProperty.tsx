@@ -3,11 +3,11 @@ import { PropertyService } from "../../Property.Service"
 import type { PropertyFiltered } from "../../Property.Model"
 import { InputText } from "primereact/inputtext"
 import { Button } from "primereact/button"
-import AppPaginator from "../../../../shared/components/AppPaginator"
+import AppPaginator from "../../../../shared/components/paginator/AppPaginator"
 import { useBreadcrumbs } from "../../../../shared/contexts/BreadcrumbContext"
 import { InputNumber } from "primereact/inputnumber"
-import PropertyTable from "./components/PropertyTable"
-import PropertyCards from "./components/PropertyCards"
+import PropertyTable from "./components/table/PropertyTable"
+import PropertyCards from "./components/cards/PropertyCards"
 
 type Filter = {
     keyword: string| null,

@@ -1,5 +1,5 @@
 import GetProperty from "./pages/get/GetProperty";
-import DetailProperty from "./pages/DetailProperty";
+import DetailProperty from "./pages/detail/DetailProperty";
 import { PropertyService } from "./Property.Service";
 
 export const appPropertyChildren = [

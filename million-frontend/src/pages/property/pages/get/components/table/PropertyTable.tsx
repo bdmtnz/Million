@@ -1,7 +1,7 @@
 import { Column } from "primereact/column"
 import { DataTable } from "primereact/datatable"
-import type { PropertyFiltered } from "../../../Property.Model"
-import { Utils } from "../../../../../shared/Utils"
+import type { PropertyFiltered } from "../../../../Property.Model"
+import { Utils } from "../../../../../../shared/Utils"
 import { Button } from "primereact/button"
 import { useNavigate } from "react-router"
 

@@ -1,4 +1,4 @@
-type PropertyOwner = {
+export type PropertyOwner = {
     name: string,
     address: string,
     photo: string,

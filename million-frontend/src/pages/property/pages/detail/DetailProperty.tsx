@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router";
-import { Utils } from "../../../shared/Utils";
+import { Utils } from "../../../../shared/Utils";
 import { useEffect } from "react";
-import { useBreadcrumbs } from "../../../shared/contexts/BreadcrumbContext";
+import { useBreadcrumbs } from "../../../../shared/contexts/BreadcrumbContext";
 
 const DetailProperty = () => {
     const {set} = useBreadcrumbs()

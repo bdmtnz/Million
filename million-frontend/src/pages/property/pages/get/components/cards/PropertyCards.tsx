@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
-import { Utils } from "../../../../../shared/Utils"
-import type { PropertyFiltered } from "../../../Property.Model"
+import { Utils } from "../../../../../../shared/Utils"
+import type { PropertyFiltered } from "../../../../Property.Model"
 
 type PropertyCardsProps = {
     properties: PropertyFiltered[]
